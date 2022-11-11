@@ -1,0 +1,59 @@
+<%- include('./partials/header') %>
+<%- include('./partials/homeNavbar') %>  
+
+<div class="container">
+
+  <div class="row">
+    <div class="p-4 bg-light my-5 border">
+      <h3>Blog Guia do Programador</h3>
+      <hr>
+      <p>
+        Bem vindo ao projeto do Blog Guia do Programador!
+      </p>
+    </div>
+  </div>
+
+  <% article.forEach(element => { %>
+    <div class="row mt-3">
+      <div class="card text-dark bg-light p-0">
+        <div class="card-header">
+          publicado em: <%= element.createdAt %> 
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= element.title %> </h3>
+          <hr> 
+          <a href="/read/<%= element.slug %>" class="btn btn-success">Ler mais</a>
+        
+        </div>
+      </div>
+    </div>
+  <% }) %>
+
+  <div class="row mt-5">
+    <nav class="d-flex justify-content-center">
+      <ul class="pagination">
+        <% if (page > 0) { %>
+          <li class="page-item">
+            <a class="page-link" href="/page/<%= page - 1 %>" aria-label="Next">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        <% } %>
+        <li class="page-item">
+          <span href="" class="page-link"><%= page + 1 %> </span>
+        </li>
+        <% if (page + 1 < numPages) { %>
+          <li class="page-item">
+            <a class="page-link" href="/page/<%= page + 1 %>" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<%- include('./partials/footer')  %> 
+
+<%- include('./partials/bottom') %> 

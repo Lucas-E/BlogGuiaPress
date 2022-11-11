@@ -1,0 +1,38 @@
+<%- include('../../partials/header')  %> 
+<%- include('../../partials/navbar')  %> 
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="card p-0">
+            <div class="card-header">Edit article with name <%= article.title %> </div>
+            <div class="card-body">
+                <form action="/admin/articles/edit/save" method="POST">
+                    <input type="hidden" value="<%= article.id %>" name="id">
+                    <label for="title" class="form-label">Name of the article</label>
+                    <input type="text" class="form-control mb-3" name="title" id="title" placeholder="Inform the article title" value="<%= article.title %>">
+                    <textarea name="body" id="article" cols="30" rows="10" class="form-control mt-3" placeholder="Write your article here"><%= article.body %></textarea>
+                    <hr>
+                    <label for="category" class="form-albel mt-3">Select article's category</label>
+                    <select name="category" id="category" class="mt-2 form-control">
+                        <% categories.forEach(element => { %>
+                         <option value="<%= element.id %> "><%= element.title %> </option>
+                        <% }) %>
+                    </select>
+                    <button class="btn btn-outline-success btn-sm mt-4">Editar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+      selector: '#article',
+      language: 'pt_BR',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect insertdatetime fullscreen save',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat | insertdatetime | fullscreen | save | table',
+    });
+</script>
+
+<%- include('../../partials/bottom')  %> 

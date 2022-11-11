@@ -1,0 +1,45 @@
+<%- include('../../partials/header')  %> 
+<%- include('../../partials/navbar')  %> 
+
+<div class="container-fluid">
+    <div class="row mt-3">
+        <a href="/admin/categories/new" class="btn btn-success my-4 col-3">Criar nova categoria</a>
+        <hr>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Action</th>
+            </tr>
+            <tbody>
+                <% data.forEach(element => { %>
+                    <tr>
+                        <th scope="row"><%= element.id %> </th>
+                        <td><%= element.title %> </td>
+                        <td><%= element.slug %> </td>
+                        <td class="d-flex justify-content-around">
+                            <form action="/admin/categories/delete" class="d-inline" method="POST" onsubmit="confirmar(event, this)">
+                                <input type="hidden" value="<%= element.id %>" name="id" id="id">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href="/admin/categories/edit/<%= element.id %>" class="btn btn-warning">editar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function confirmar(event, form){
+        event.preventDefault()
+        const confirmation = confirm('Deseja deletar a categoria?');
+        if(confirmation){
+            form.submit()
+        }
+    }
+</script>
+
+<%- include('../../partials/bottom')  %> 

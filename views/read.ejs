@@ -1,0 +1,24 @@
+<%- include('./partials/header') %>
+<%- include('./partials/homeNavbar') %>  
+
+<div class="container">
+
+  <div class="row mt-5">
+    <h4><%= article.title %> </h4>
+    <p class="fw-lighter">Publicado em: <%= article.createdAt %> </p>
+    <hr>
+    <div class="p-4">
+        <%- article.body %> 
+    </div>
+
+    <hr>
+
+    <p class="fw-lighter">Category: <%= article.Category.title %> </p>
+
+  </div>
+
+</div>
+
+<%- include('./partials/footer')  %> 
+
+<%- include('./partials/bottom') %> 
